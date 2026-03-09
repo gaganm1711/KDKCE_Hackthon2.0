@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian Live | Real-Time Accident Response Network</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <h1>Guardian<span>Live</span></h1>
+            </div>
+            <div class="system-status">
+                <span class="status-dot"></span>
+                <span class="status-text">Network Synced</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="map-section">
+                <div id="map"></div>
+                <!-- HUD Overlays -->
+                <div class="map-telemetry">
+                    <div class="telemetry-tag">SAT_LOCK: ACTIVE</div>
+                </div>
+                <!-- Controls hidden but accessible -->
+                <div class="dev-controls">
+                    <button id="triggerAccident" class="btn-small">Manual Override</button>
+                    <button id="resetSimulation" class="btn-small">Reset Link</button>
+                </div>
+            </div>
+
+            <aside class="info-sidebar">
+                <!-- Live Telemetry Card -->
+                <section class="card" id="alertPanel">
+                    <div class="card-title">
+                        Telemetry Monitor
+                        <span class="live-badge">LIVE FEED</span>
+                    </div>
+                    
+                    <div class="status-hero" id="emergencyStatus">
+                        <div class="status-label">HELMET STATUS</div>
+                        <h3 class="status-value">Active Monitoring</h3>
+                    </div>
+
+                    <div class="data-grid">
+                        <div class="data-box">
+                            <div class="data-label">COORD_LAT</div>
+                            <div id="latVal" class="data-val">--.------</div>
+                        </div>
+                        <div class="data-box">
+                            <div class="data-label">COORD_LON</div>
+                            <div id="lonVal" class="data-val">--.------</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Response Intelligence (A*) -->
+                <section class="card">
+                    <div class="card-title">Response Intelligence</div>
+                    <div id="hospitalInfo">
+                        <div style="text-align: center; color: var(--text-dim); padding: 1rem; border: 1px dashed var(--glass-border); border-radius: 1rem;">
+                            <p style="font-size: 0.8rem;">Waiting for impact telemetry...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Hospital Nodes -->
+                <section class="card">
+                    <div class="card-title">Hospital Network Nodes</div>
+                    <div class="hospital-list" id="hospitalList" style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.8rem;">
+                        <!-- Dynamically Injected -->
+                    </div>
+                </section>
+            </aside>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
